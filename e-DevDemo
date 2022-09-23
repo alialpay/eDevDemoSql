@@ -88,6 +88,7 @@ create table edevdemo.ref_banka(
 CREATE TABLE edevdemo.iller(
 il_kodu int unique primary key,
 isim VARCHAR(50)
+--constraint fk_il_kodu foreign key(il_kodu) references belediye(il_kodu)
 );
  
 CREATE TABLE edevdemo.ilceler(
@@ -100,11 +101,12 @@ ON DELETE CASCADE
 ON UPDATE cascade
 );
 
+-- foreign key silince diğeri de
 CREATE TABLE edevdemo.belediye (
 	belediye_id serial,
 	kurum_id int,
-	il_kodu int unique,
-	ilce_kodu int unique,
+	il_kodu int unique, --il kodu
+	ilce_kodu int unique, --ilce kodu
     CONSTRAINT fk_kurum FOREIGN KEY(kurum_id) REFERENCES edevdemo.kurum(kurum_id)
     ON DELETE CASCADE
 	ON UPDATE CASCADE
@@ -122,8 +124,3 @@ ALTER TABLE edevdemo.belediye
     NOT VALID;
    
 
-
-   
-   
-   
-   
